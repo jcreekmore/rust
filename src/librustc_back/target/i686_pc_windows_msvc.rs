@@ -37,3 +37,18 @@ pub fn target() -> Target {
         options: base,
     }
 }
+
+#[cfg(test)]
+mod test {
+    use serialize::json;
+    use target::Target;
+
+    #[test]
+    fn parse_json() {
+        let contents = include_str!("json/i686-pc-windows-msvc.json");
+        let obj = json::from_str(&contents).unwrap();
+
+        let target = Target::from_json(obj);
+        assert_eq!(target, super::target());
+    }
+}
