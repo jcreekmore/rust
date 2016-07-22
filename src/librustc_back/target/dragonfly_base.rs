@@ -29,6 +29,7 @@ pub fn opts() -> TargetOptions {
         ),
         position_independent_executables: true,
         exe_allocation_crate: super::maybe_jemalloc(),
+        is_builtin: true,
         .. Default::default()
     }
 }

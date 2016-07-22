@@ -15,6 +15,7 @@ pub fn target() -> Target {
     base.cpu = "yonah".to_string();
     base.max_atomic_width = 64;
     base.pre_link_args.push("-m32".to_string());
+    base.is_builtin = true;
 
     Target {
         llvm_target: "i686-apple-darwin".to_string(),

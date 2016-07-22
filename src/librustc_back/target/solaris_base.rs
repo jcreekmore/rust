@@ -18,6 +18,7 @@ pub fn opts() -> TargetOptions {
         has_rpath: true,
         is_like_solaris: true,
         exe_allocation_crate: super::maybe_jemalloc(),
+        is_builtin: true,
 
         .. Default::default()
     }

@@ -15,6 +15,7 @@ pub fn target() -> Target {
     base.cpu = "pentium4".to_string();
     base.max_atomic_width = 64;
     base.pre_link_args.push("-m32".to_string());
+    base.is_builtin = true;
 
     Target {
         llvm_target: "i686-unknown-dragonfly".to_string(),

@@ -23,6 +23,7 @@ pub fn target() -> Target {
         allow_asm: false,
         obj_is_bitcode: true,
         max_atomic_width: 32,
+        is_builtin: true,
         .. Default::default()
     };
     Target {

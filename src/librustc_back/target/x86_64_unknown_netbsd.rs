@@ -14,6 +14,7 @@ pub fn target() -> Target {
     let mut base = super::netbsd_base::opts();
     base.max_atomic_width = 64;
     base.pre_link_args.push("-m64".to_string());
+    base.is_builtin = true;
 
     Target {
         llvm_target: "x86_64-unknown-netbsd".to_string(),

@@ -14,6 +14,7 @@ pub fn target() -> Target {
     let mut base = super::linux_base::opts();
     base.pre_link_args.push("-m32".to_string());
     base.max_atomic_width = 32;
+    base.is_builtin = true;
 
     Target {
         llvm_target: "powerpc-unknown-linux-gnu".to_string(),

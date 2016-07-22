@@ -14,6 +14,7 @@ pub fn target() -> Target {
     let mut base = super::android_base::opts();
 
     base.max_atomic_width = 64;
+    base.is_builtin = true;
 
     // http://developer.android.com/ndk/guides/abis.html#x86
     base.cpu = "pentiumpro".to_string();

@@ -15,6 +15,7 @@ pub fn target() -> Target {
     base.cpu = "ppc64le".to_string();
     base.pre_link_args.push("-m64".to_string());
     base.max_atomic_width = 64;
+    base.is_builtin = true;
 
     Target {
         llvm_target: "powerpc64le-unknown-linux-gnu".to_string(),
