@@ -1,0 +1,26 @@
+{
+  "arch": "x86",
+  "archive-format": "bsd",
+  "cpu": "yonah",
+  "data-layout": "e-m:o-p:32:32-f64:32:64-f80:128-n8:16:32-S128",
+  "dll-suffix": ".dylib",
+  "env": "",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "function-sections": false,
+  "has-rpath": true,
+  "is-builtin": true,
+  "is-like-osx": true,
+  "llvm-target": "i386-apple-ios",
+  "max-atomic-width": 64,
+  "os": "ios",
+  "pre-link-args": [
+    "-arch",
+    "i386",
+    "-Wl,-syslibroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "apple"
+}

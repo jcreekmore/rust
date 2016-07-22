@@ -1,0 +1,25 @@
+{
+  "arch": "x86",
+  "archive-format": "bsd",
+  "cpu": "yonah",
+  "data-layout": "e-m:o-p:32:32-f64:32:64-f80:128-n8:16:32-S128",
+  "dll-suffix": ".dylib",
+  "dynamic-linking": true,
+  "env": "",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "function-sections": false,
+  "has-elf-tls": true,
+  "has-rpath": true,
+  "is-builtin": true,
+  "is-like-osx": true,
+  "llvm-target": "i686-apple-darwin",
+  "max-atomic-width": 64,
+  "os": "macos",
+  "pre-link-args": [
+    "-m32"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "apple"
+}

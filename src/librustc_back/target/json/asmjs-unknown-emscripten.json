@@ -1,0 +1,20 @@
+{
+  "allow-asm": false,
+  "ar": "emar",
+  "arch": "asmjs",
+  "data-layout": "e-p:32:32-i64:64-v128:32:128-n32-S128",
+  "env": "",
+  "exe-suffix": ".js",
+  "executables": true,
+  "is-builtin": true,
+  "linker": "emcc",
+  "linker-is-gnu": true,
+  "llvm-target": "asmjs-unknown-emscripten",
+  "max-atomic-width": 32,
+  "no-compiler-rt": true,
+  "obj-is-bitcode": true,
+  "os": "emscripten",
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}

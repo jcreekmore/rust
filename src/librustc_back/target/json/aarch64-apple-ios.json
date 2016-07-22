@@ -1,0 +1,28 @@
+{
+  "arch": "aarch64",
+  "archive-format": "bsd",
+  "cpu": "cyclone",
+  "data-layout": "e-m:o-i64:64-i128:128-n32:64-S128",
+  "dll-suffix": ".dylib",
+  "eliminate-frame-pointer": false,
+  "env": "",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "features": "+neon,+fp-armv8,+cyclone",
+  "function-sections": false,
+  "has-rpath": true,
+  "is-builtin": true,
+  "is-like-osx": true,
+  "llvm-target": "arm64-apple-ios",
+  "max-atomic-width": 128,
+  "os": "ios",
+  "pre-link-args": [
+    "-arch",
+    "arm64",
+    "-Wl,-syslibroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "64",
+  "vendor": "apple"
+}

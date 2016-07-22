@@ -1,0 +1,30 @@
+{
+  "ar": "llvm-ar.exe",
+  "arch": "x86",
+  "cpu": "pentium",
+  "data-layout": "e-m:x-p:32:32-i64:64-f80:32-n8:16:32-a:0:32-S32",
+  "dll-prefix": "",
+  "dll-suffix": ".dll",
+  "dynamic-linking": true,
+  "env": "msvc",
+  "exe-suffix": ".exe",
+  "executables": true,
+  "is-builtin": true,
+  "is-like-msvc": true,
+  "is-like-windows": true,
+  "linker": "link.exe",
+  "llvm-target": "i586-pc-windows-msvc",
+  "max-atomic-width": 64,
+  "os": "windows",
+  "pre-link-args": [
+    "/NOLOGO",
+    "/NXCOMPAT",
+    "/LARGEADDRESSAWARE",
+    "/SAFESEH"
+  ],
+  "staticlib-prefix": "",
+  "staticlib-suffix": ".lib",
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "pc"
+}

@@ -1,0 +1,26 @@
+{
+  "allow-asm": false,
+  "ar": "pnacl-ar",
+  "arch": "le32",
+  "data-layout": "e-i64:64:64-p:32:32:32-v128:32:32",
+  "env": "newlib",
+  "exe-suffix": ".pexe",
+  "executables": true,
+  "is-builtin": true,
+  "linker": "pnacl-clang",
+  "linker-is-gnu": true,
+  "llvm-target": "le32-unknown-nacl",
+  "max-atomic-width": 32,
+  "os": "nacl",
+  "post-link-args": [
+    "-Wl,--end-group"
+  ],
+  "pre-link-args": [
+    "--pnacl-exceptions=sjlj",
+    "--target=le32-unknown-nacl",
+    "-Wl,--start-group"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}

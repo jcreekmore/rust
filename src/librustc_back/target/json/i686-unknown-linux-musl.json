@@ -1,0 +1,37 @@
+{
+  "arch": "x86",
+  "cpu": "pentium4",
+  "data-layout": "e-m:e-p:32:32-f64:32:64-f80:32-n8:16:32-S128",
+  "env": "musl",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "has-elf-tls": true,
+  "is-builtin": true,
+  "linker-is-gnu": true,
+  "llvm-target": "i686-unknown-linux-musl",
+  "max-atomic-width": 64,
+  "os": "linux",
+  "post-link-args": [
+    "-Wl,-)"
+  ],
+  "post-link-objects": [
+    "crtn.o"
+  ],
+  "pre-link-args": [
+    "-Wl,--as-needed",
+    "-Wl,-z,noexecstack",
+    "-nostdlib",
+    "-static",
+    "-Wl,--eh-frame-hdr",
+    "-Wl,-(",
+    "-m32",
+    "-Wl,-melf_i386"
+  ],
+  "pre-link-objects-exe": [
+    "crt1.o",
+    "crti.o"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}

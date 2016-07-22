@@ -1,0 +1,25 @@
+{
+  "arch": "mips",
+  "cpu": "mips32r2",
+  "data-layout": "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64",
+  "dynamic-linking": true,
+  "env": "musl",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "features": "+mips32r2,+soft-float",
+  "has-elf-tls": true,
+  "has-rpath": true,
+  "is-builtin": true,
+  "linker-is-gnu": true,
+  "llvm-target": "mips-unknown-linux-musl",
+  "max-atomic-width": 32,
+  "os": "linux",
+  "position-independent-executables": true,
+  "pre-link-args": [
+    "-Wl,--as-needed",
+    "-Wl,-z,noexecstack"
+  ],
+  "target-endian": "big",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}

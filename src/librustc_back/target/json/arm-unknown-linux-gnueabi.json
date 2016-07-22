@@ -1,0 +1,24 @@
+{
+  "arch": "arm",
+  "data-layout": "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64",
+  "dynamic-linking": true,
+  "env": "gnu",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "features": "+v6",
+  "has-elf-tls": true,
+  "has-rpath": true,
+  "is-builtin": true,
+  "linker-is-gnu": true,
+  "llvm-target": "arm-unknown-linux-gnueabi",
+  "max-atomic-width": 64,
+  "os": "linux",
+  "position-independent-executables": true,
+  "pre-link-args": [
+    "-Wl,--as-needed",
+    "-Wl,-z,noexecstack"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}
