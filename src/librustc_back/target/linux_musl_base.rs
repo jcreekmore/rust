@@ -66,6 +66,7 @@ pub fn opts() -> TargetOptions {
     base.dynamic_linking = false;
     base.has_rpath = false;
     base.position_independent_executables = false;
+    base.is_builtin = true;
 
     base
 }

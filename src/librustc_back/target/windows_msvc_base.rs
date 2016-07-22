@@ -60,6 +60,7 @@ pub fn opts() -> TargetOptions {
             "/NXCOMPAT".to_string(),
         ],
         exe_allocation_crate: "alloc_system".to_string(),
+        is_builtin: true,
 
         .. Default::default()
     }

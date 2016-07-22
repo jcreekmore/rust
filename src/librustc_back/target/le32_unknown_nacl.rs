@@ -26,6 +26,7 @@ pub fn target() -> Target {
         linker_is_gnu: true,
         allow_asm: false,
         max_atomic_width: 32,
+        is_builtin: true,
         .. Default::default()
     };
     Target {

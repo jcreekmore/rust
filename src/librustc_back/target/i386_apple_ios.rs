@@ -23,6 +23,7 @@ pub fn target() -> Target {
         target_vendor: "apple".to_string(),
         options: TargetOptions {
             max_atomic_width: 64,
+            is_builtin: true,
             .. opts(Arch::I386)
         }
     }

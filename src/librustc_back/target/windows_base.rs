@@ -83,6 +83,7 @@ pub fn opts() -> TargetOptions {
             "rsend.o".to_string()
         ),
         custom_unwind_resume: true,
+        is_builtin: true,
 
         .. Default::default()
     }

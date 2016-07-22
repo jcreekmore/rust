@@ -16,6 +16,7 @@ pub fn target() -> Target {
     base.linker = "x86_64-rumprun-netbsd-gcc".to_string();
     base.ar = "x86_64-rumprun-netbsd-ar".to_string();
     base.max_atomic_width = 64;
+    base.is_builtin = true;
 
     base.dynamic_linking = false;
     base.has_rpath = false;

@@ -28,6 +28,7 @@ pub fn opts() -> TargetOptions {
             "-Wl,-z,noexecstack".to_string(),
         ),
         position_independent_executables: true,
+        is_builtin: true,
         .. Default::default()
     }
 }

@@ -24,6 +24,7 @@ pub fn target() -> Target {
         options: TargetOptions {
             features: "+v7,+vfp3,+neon".to_string(),
             max_atomic_width: 64,
+            is_builtin: true,
             .. opts(Arch::Armv7)
         }
     }

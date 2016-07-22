@@ -16,6 +16,7 @@ pub fn target() -> Target {
     base.max_atomic_width = 64;
     base.pre_link_args.push("-m32".to_string());
     base.pre_link_args.push("-Wl,-melf_i386".to_string());
+    base.is_builtin = true;
 
     Target {
         llvm_target: "i686-unknown-linux-musl".to_string(),

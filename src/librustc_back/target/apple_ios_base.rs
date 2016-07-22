@@ -89,6 +89,7 @@ pub fn opts(arch: Arch) -> TargetOptions {
         executables: true,
         pre_link_args: pre_link_args(arch),
         has_elf_tls: false,
+        is_builtin: true,
         .. super::apple_base::opts()
     }
 }

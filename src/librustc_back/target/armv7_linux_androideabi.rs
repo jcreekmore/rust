@@ -14,6 +14,7 @@ pub fn target() -> Target {
     let mut base = super::android_base::opts();
     base.features = "+v7,+thumb2,+vfp3,+d16".to_string();
     base.max_atomic_width = 64;
+    base.is_builtin = true;
 
     Target {
         llvm_target: "armv7-none-linux-android".to_string(),
