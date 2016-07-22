@@ -44,40 +44,26 @@
 //! the target's settings, though `target-feature` and `link-args` will *add*
 //! to the list specified by the target, rather than replace.
 
+use serialize::json;
 use serialize::json::{Json, ToJson};
 use std::collections::BTreeMap;
 use std::default::Default;
 use std::io::prelude::*;
 use syntax::abi::Abi;
 
-mod android_base;
-mod apple_base;
-mod apple_ios_base;
-mod bitrig_base;
-mod dragonfly_base;
-mod freebsd_base;
-mod linux_base;
-mod linux_musl_base;
-mod openbsd_base;
-mod netbsd_base;
-mod solaris_base;
-mod windows_base;
-mod windows_msvc_base;
-
 macro_rules! supported_targets {
-    ( $(($triple:expr, $module:ident)),+ ) => (
-        $(mod $module;)*
-
+    ( $(($triple:expr, $jsonpath:expr)),+ ) => (
         /// List of supported targets
         pub const TARGETS: &'static [&'static str] = &[$($triple),*];
 
         // this would use a match if stringify! were allowed in pattern position
         fn load_specific(target: &str) -> Option<Target> {
-            let target = target.replace("-", "_");
             if false { }
             $(
-                else if target == stringify!($module) {
-                    let mut t = $module::target();
+                else if target == stringify!($triple) {
+                    let contents = include_str!($jsonpath);
+                    let obj = json::from_str(&contents).unwrap();
+                    let mut t = Target::from_json(obj);
                     t.options.is_builtin = true;
                     debug!("Got builtin target: {:?}", t);
                     return Some(t);
@@ -90,59 +76,59 @@ macro_rules! supported_targets {
 }
 
 supported_targets! {
-    ("x86_64-unknown-linux-gnu", x86_64_unknown_linux_gnu),
-    ("i686-unknown-linux-gnu", i686_unknown_linux_gnu),
-    ("i586-unknown-linux-gnu", i586_unknown_linux_gnu),
-    ("mips-unknown-linux-gnu", mips_unknown_linux_gnu),
-    ("mipsel-unknown-linux-gnu", mipsel_unknown_linux_gnu),
-    ("powerpc-unknown-linux-gnu", powerpc_unknown_linux_gnu),
-    ("powerpc64-unknown-linux-gnu", powerpc64_unknown_linux_gnu),
-    ("powerpc64le-unknown-linux-gnu", powerpc64le_unknown_linux_gnu),
-    ("arm-unknown-linux-gnueabi", arm_unknown_linux_gnueabi),
-    ("arm-unknown-linux-gnueabihf", arm_unknown_linux_gnueabihf),
-    ("armv7-unknown-linux-gnueabihf", armv7_unknown_linux_gnueabihf),
-    ("aarch64-unknown-linux-gnu", aarch64_unknown_linux_gnu),
-    ("x86_64-unknown-linux-musl", x86_64_unknown_linux_musl),
-    ("i686-unknown-linux-musl", i686_unknown_linux_musl),
-    ("mips-unknown-linux-musl", mips_unknown_linux_musl),
-    ("mipsel-unknown-linux-musl", mipsel_unknown_linux_musl),
+    ("x86_64-unknown-linux-gnu", "json/x86_64-unknown-linux-gnu.json"),
+    ("i686-unknown-linux-gnu", "json/i686-unknown-linux-gnu.json"),
+    ("i586-unknown-linux-gnu", "json/i586-unknown-linux-gnu.json"),
+    ("mips-unknown-linux-gnu", "json/mips-unknown-linux-gnu.json"),
+    ("mipsel-unknown-linux-gnu", "json/mipsel-unknown-linux-gnu.json"),
+    ("powerpc-unknown-linux-gnu", "json/powerpc-unknown-linux-gnu.json"),
+    ("powerpc64-unknown-linux-gnu", "json/powerpc64-unknown-linux-gnu.json"),
+    ("powerpc64le-unknown-linux-gnu", "json/powerpc64le-unknown-linux-gnu.json"),
+    ("arm-unknown-linux-gnueabi", "json/arm-unknown-linux-gnueabi.json"),
+    ("arm-unknown-linux-gnueabihf", "json/arm-unknown-linux-gnueabihf.json"),
+    ("armv7-unknown-linux-gnueabihf", "json/armv7-unknown-linux-gnueabihf.json"),
+    ("aarch64-unknown-linux-gnu", "json/aarch64-unknown-linux-gnu.json"),
+    ("x86_64-unknown-linux-musl", "json/x86_64-unknown-linux-musl.json"),
+    ("i686-unknown-linux-musl", "json/i686-unknown-linux-musl.json"),
+    ("mips-unknown-linux-musl", "json/mips-unknown-linux-musl.json"),
+    ("mipsel-unknown-linux-musl", "json/mipsel-unknown-linux-musl.json"),
 
-    ("i686-linux-android", i686_linux_android),
-    ("arm-linux-androideabi", arm_linux_androideabi),
-    ("armv7-linux-androideabi", armv7_linux_androideabi),
-    ("aarch64-linux-android", aarch64_linux_android),
+    ("i686-linux-android", "json/i686-linux-android.json"),
+    ("arm-linux-androideabi", "json/arm-linux-androideabi.json"),
+    ("armv7-linux-androideabi", "json/armv7-linux-androideabi.json"),
+    ("aarch64-linux-android", "json/aarch64-linux-android.json"),
 
-    ("i686-unknown-freebsd", i686_unknown_freebsd),
-    ("x86_64-unknown-freebsd", x86_64_unknown_freebsd),
+    ("i686-unknown-freebsd", "json/i686-unknown-freebsd.json"),
+    ("x86_64-unknown-freebsd", "json/x86_64-unknown-freebsd.json"),
 
-    ("i686-unknown-dragonfly", i686_unknown_dragonfly),
-    ("x86_64-unknown-dragonfly", x86_64_unknown_dragonfly),
+    ("i686-unknown-dragonfly", "json/i686-unknown-dragonfly.json"),
+    ("x86_64-unknown-dragonfly", "json/x86_64-unknown-dragonfly.json"),
 
-    ("x86_64-unknown-bitrig", x86_64_unknown_bitrig),
-    ("x86_64-unknown-openbsd", x86_64_unknown_openbsd),
-    ("x86_64-unknown-netbsd", x86_64_unknown_netbsd),
-    ("x86_64-rumprun-netbsd", x86_64_rumprun_netbsd),
+    ("x86_64-unknown-bitrig", "json/x86_64-unknown-bitrig.json"),
+    ("x86_64-unknown-openbsd", "json/x86_64-unknown-openbsd.json"),
+    ("x86_64-unknown-netbsd", "json/x86_64-unknown-netbsd.json"),
+    ("x86_64-rumprun-netbsd", "json/x86_64-rumprun-netbsd.json"),
 
-    ("x86_64-apple-darwin", x86_64_apple_darwin),
-    ("i686-apple-darwin", i686_apple_darwin),
+    ("x86_64-apple-darwin", "json/x86_64-apple-darwin.json"),
+    ("i686-apple-darwin", "json/i686-apple-darwin.json"),
 
-    ("i386-apple-ios", i386_apple_ios),
-    ("x86_64-apple-ios", x86_64_apple_ios),
-    ("aarch64-apple-ios", aarch64_apple_ios),
-    ("armv7-apple-ios", armv7_apple_ios),
-    ("armv7s-apple-ios", armv7s_apple_ios),
+    ("i386-apple-ios", "json/i386-apple-ios.json"),
+    ("x86_64-apple-ios", "json/x86_64-apple-ios.json"),
+    ("aarch64-apple-ios", "json/aarch64-apple-ios.json"),
+    ("armv7-apple-ios", "json/armv7-apple-ios.json"),
+    ("armv7s-apple-ios", "json/armv7s-apple-ios.json"),
 
-    ("x86_64-sun-solaris", x86_64_sun_solaris),
+    ("x86_64-sun-solaris", "json/x86_64-sun-solaris.json"),
 
-    ("x86_64-pc-windows-gnu", x86_64_pc_windows_gnu),
-    ("i686-pc-windows-gnu", i686_pc_windows_gnu),
+    ("x86_64-pc-windows-gnu", "json/x86_64-pc-windows-gnu.json"),
+    ("i686-pc-windows-gnu", "json/i686-pc-windows-gnu.json"),
 
-    ("x86_64-pc-windows-msvc", x86_64_pc_windows_msvc),
-    ("i686-pc-windows-msvc", i686_pc_windows_msvc),
-    ("i586-pc-windows-msvc", i586_pc_windows_msvc),
+    ("x86_64-pc-windows-msvc", "json/x86_64-pc-windows-msvc.json"),
+    ("i686-pc-windows-msvc", "json/i686-pc-windows-msvc.json"),
+    ("i586-pc-windows-msvc", "json/i586-pc-windows-msvc.json"),
 
-    ("le32-unknown-nacl", le32_unknown_nacl),
-    ("asmjs-unknown-emscripten", asmjs_unknown_emscripten)
+    ("le32-unknown-nacl", "json/le32-unknown-nacl.json"),
+    ("asmjs-unknown-emscripten", "json/asmjs-unknown-emscripten.json")
 }
 
 /// Everything `rustc` knows about how to compile for a specific target.
