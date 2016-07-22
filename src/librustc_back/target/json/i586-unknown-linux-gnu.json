@@ -1,0 +1,25 @@
+{
+  "arch": "x86",
+  "cpu": "pentium",
+  "data-layout": "e-m:e-p:32:32-f64:32:64-f80:32-n8:16:32-S128",
+  "dynamic-linking": true,
+  "env": "gnu",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "has-elf-tls": true,
+  "has-rpath": true,
+  "is-builtin": true,
+  "linker-is-gnu": true,
+  "llvm-target": "i586-unknown-linux-gnu",
+  "max-atomic-width": 64,
+  "os": "linux",
+  "position-independent-executables": true,
+  "pre-link-args": [
+    "-Wl,--as-needed",
+    "-Wl,-z,noexecstack",
+    "-m32"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "unknown"
+}

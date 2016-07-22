@@ -1,0 +1,50 @@
+{
+  "arch": "x86",
+  "cpu": "pentium4",
+  "custom-unwind-resume": true,
+  "data-layout": "e-m:x-p:32:32-i64:64-f80:32-n8:16:32-a:0:32-S32",
+  "dll-prefix": "",
+  "dll-suffix": ".dll",
+  "dynamic-linking": true,
+  "env": "gnu",
+  "exe-suffix": ".exe",
+  "executables": true,
+  "function-sections": false,
+  "is-builtin": true,
+  "is-like-windows": true,
+  "late-link-args": [
+    "-lmingwex",
+    "-lmingw32",
+    "-lgcc",
+    "-lmsvcrt",
+    "-luser32",
+    "-lkernel32"
+  ],
+  "linker": "gcc",
+  "llvm-target": "i686-pc-windows-gnu",
+  "max-atomic-width": 64,
+  "os": "windows",
+  "post-link-objects": [
+    "rsend.o"
+  ],
+  "pre-link-args": [
+    "-Wl,--enable-long-section-names",
+    "-fno-use-linker-plugin",
+    "-Wl,--nxcompat",
+    "-nostdlib",
+    "-Wl,--large-address-aware"
+  ],
+  "pre-link-objects-dll": [
+    "dllcrt2.o",
+    "rsbegin.o"
+  ],
+  "pre-link-objects-exe": [
+    "crt2.o",
+    "rsbegin.o"
+  ],
+  "staticlib-prefix": "",
+  "staticlib-suffix": ".lib",
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "pc"
+}

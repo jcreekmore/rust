@@ -1,0 +1,25 @@
+{
+  "arch": "aarch64",
+  "data-layout": "e-m:e-i64:64-i128:128-n32:64-S128",
+  "dynamic-linking": true,
+  "env": "",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "features": "+neon,+fp-armv8",
+  "has-rpath": true,
+  "is-builtin": true,
+  "is-like-android": true,
+  "linker-is-gnu": true,
+  "llvm-target": "aarch64-linux-android",
+  "max-atomic-width": 128,
+  "os": "android",
+  "position-independent-executables": true,
+  "pre-link-args": [
+    "-Wl,--as-needed",
+    "-Wl,-z,noexecstack",
+    "-Wl,--allow-multiple-definition"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "64",
+  "vendor": "unknown"
+}

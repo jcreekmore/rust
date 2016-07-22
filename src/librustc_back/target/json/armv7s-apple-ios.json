@@ -1,0 +1,27 @@
+{
+  "arch": "arm",
+  "archive-format": "bsd",
+  "cpu": "cortex-a9",
+  "data-layout": "e-m:o-p:32:32-f64:32:64-v64:32:64-v128:32:128-a:0:32-n32-S32",
+  "dll-suffix": ".dylib",
+  "env": "",
+  "exe-allocation-crate": "alloc_jemalloc",
+  "executables": true,
+  "features": "+v7,+vfp4,+neon",
+  "function-sections": false,
+  "has-rpath": true,
+  "is-builtin": true,
+  "is-like-osx": true,
+  "llvm-target": "armv7s-apple-ios",
+  "max-atomic-width": 64,
+  "os": "ios",
+  "pre-link-args": [
+    "-arch",
+    "armv7s",
+    "-Wl,-syslibroot",
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk"
+  ],
+  "target-endian": "little",
+  "target-pointer-width": "32",
+  "vendor": "apple"
+}
