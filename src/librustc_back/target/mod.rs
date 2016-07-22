@@ -435,6 +435,16 @@ impl Target {
                         .map(|s| s.to_string() );
                 }
             } );
+            ($key_name:ident, allocation) => ( {
+                let name = (stringify!($key_name)).replace("_", "-");
+                obj.find(&name[..]).map(|o| o.as_string()
+                                    .map(|s| {
+                                        base.options.$key_name = match s {
+                                            "alloc_jemalloc" => maybe_jemalloc(),
+                                            _ => s.to_string()
+                                        }
+                                    }));
+            } );
         }
 
         key!(is_builtin, bool);
@@ -474,8 +484,8 @@ impl Target {
         key!(archive_format);
         key!(allow_asm, bool);
         key!(custom_unwind_resume, bool);
-        key!(lib_allocation_crate);
-        key!(exe_allocation_crate);
+        key!(lib_allocation_crate, allocation);
+        key!(exe_allocation_crate, allocation);
         key!(has_elf_tls, bool);
         key!(obj_is_bitcode, bool);
         key!(max_atomic_width, u64);
